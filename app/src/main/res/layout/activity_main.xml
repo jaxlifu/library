@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+
+    <data>
+
+        <import type="com.yimeng.yimapp.home.viewmodel.MainViewModel"/>
+
+        <variable
+            name="viewModel"
+            type="com.yimeng.yimapp.home.viewmodel.MainViewModel"/>
+    </data>
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--底部tabs-->
+        <LinearLayout
+            android:id="@+id/ll_home_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/rl_tab_home"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:onClick="@{viewModel.onTabClick}"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp">
+
+                <ImageView
+                    android:id="@+id/iv_tab_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:selected="@{MainViewModel.TAB_INDEX_HOME == viewModel.currentIndex}"
+                    android:src="@drawable/selector_tab_home"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/iv_tab_home"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:selected="@{MainViewModel.TAB_INDEX_HOME == viewModel.currentIndex}"
+                    android:text="@string/tab_home"
+                    android:textColor="@color/selector_tab_color"
+                    android:textSize="12sp"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_tab_personal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:onClick="@{viewModel.onTabClick}"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp">
+
+                <ImageView
+                    android:id="@+id/iv_tab_personal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:selected="@{MainViewModel.TAB_INDEX_PERSONAL == viewModel.currentIndex}"
+                    android:src="@drawable/selector_tab_personal"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/iv_tab_personal"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:selected="@{MainViewModel.TAB_INDEX_PERSONAL == viewModel.currentIndex}"
+                    android:text="@string/tab_personal"
+                    android:textColor="@color/selector_tab_color"
+                    android:textSize="12sp"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_fitting"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"/>
+
+            <RelativeLayout
+                android:id="@+id/rl_tab_discover"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:onClick="@{viewModel.onTabClick}"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp">
+
+                <ImageView
+                    android:id="@+id/iv_tab_discover"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:selected="@{MainViewModel.TAB_INDEX_DISCOVER == viewModel.currentIndex}"
+                    android:src="@drawable/selector_tab_discover"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/iv_tab_discover"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:selected="@{MainViewModel.TAB_INDEX_DISCOVER == viewModel.currentIndex}"
+                    android:text="@string/tab_discover"
+                    android:textColor="@color/selector_tab_color"
+                    android:textSize="12sp"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_tab_mine"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:onClick="@{viewModel.onTabClick}"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp">
+
+                <ImageView
+                    android:id="@+id/iv_tab_mine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:selected="@{MainViewModel.TAB_INDEX_MINE == viewModel.currentIndex}"
+                    android:src="@drawable/selector_tab_mine"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/iv_tab_mine"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:selected="@{MainViewModel.TAB_INDEX_MINE == viewModel.currentIndex}"
+                    android:text="@string/tab_mine"
+                    android:textColor="@color/selector_tab_color"
+                    android:textSize="12sp"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+        <!--内容的viewPage-->
+        <com.yimeng.library.widget.ScrollAvailableViewPager
+            android:id="@+id/vp_home_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/ll_home_tabs"
+            android:layout_marginBottom="1px"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_above="@id/ll_home_tabs"
+            android:background="@color/black_30"/>
+        <!--底部突出点的个圆-->
+        <RelativeLayout
+            android:id="@+id/rl_tab_fitting"
+            android:layout_width="63dp"
+            android:layout_height="58dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/selector_3d_try"
+            android:onClick="@{viewModel.onTabClick}">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/ic_clothes_rack"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:text="@string/fitting_3d"
+                android:textColor="@color/white"
+                android:textSize="12sp"/>
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</layout>

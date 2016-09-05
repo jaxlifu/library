@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">YiMapp</string>
+    <string name="fitting_3d">3D试衣</string>
+    <string name="tab_mine">我的</string>
+    <string name="tab_discover">发现</string>
+    <string name="tab_personal">私人订制</string>
+    <string name="tab_home">首页</string>
+</resources>

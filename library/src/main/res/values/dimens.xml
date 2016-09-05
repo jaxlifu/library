@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="status_bar_size">25dp</dimen>
+
+    <!--multi-image-selector-->
+    <dimen name="image_size">64dp</dimen>
+    <dimen name="space_size">2dp</dimen>
+    <dimen name="folder_cover_size">72dp</dimen>
+    <dimen name="desire_size">107dp</dimen>
+    <!--multi-image-selector-->
+</resources>
