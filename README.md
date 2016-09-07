@@ -23,4 +23,24 @@ dependencies{
 
 * eclipse
 [eclipse jar libs 传送门](https://github.com/RainliFu/library/tree/master/library/libs) or [直接下载地址](https://github.com/RainliFu/library/blob/master/library/libs/library.jar)
- 
+
+* 其他引用说明,library中引用了`eventbus`,`logger`,`glide`,`dexter`,请注意不要重复引用
+```
+    compile 'com.orhanobut:logger:1.3'
+    compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+
+    compile 'com.karumi:dexter:2.2.2'
+```
+
+* 使用方法
+在Application中的oncreate中初始化,如果没有Application类就创建并在AndroidManifest.xml中注册
+```
+ @Override
+    public void onCreate() {
+        super.onCreate();
+        mApplication = this;
+        Dexter.initialize(this);
+        ApplicationUtils.initialize(this);
+    }
+```
