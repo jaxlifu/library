@@ -13,10 +13,14 @@
 *  and so on...
 
 ##使用library
+* gradle
 ```
 dependencies{
-	compile 'com.yimeng:library:1.0.0'
+    compile 'com.yimeng:library:1.0.0'
 }
 
 ```
+
+* eclipse
+[eclipse jar libs 传送门](https://github.com/RainliFu/library/tree/master/library/libs) or [直接下载地址](https://github.com/RainliFu/library/blob/master/library/libs/library.jar)
  
