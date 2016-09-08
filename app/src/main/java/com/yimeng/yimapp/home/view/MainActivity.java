@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 
-import com.yimeng.yimapp.adapter.ViewPageAdapter;
 import com.yimeng.yimapp.R;
+import com.yimeng.yimapp.adapter.ViewPageAdapter;
 import com.yimeng.yimapp.base.BaseActivity;
 import com.yimeng.yimapp.databinding.ActivityMainBinding;
 import com.yimeng.yimapp.home.viewmodel.MainViewModel;
@@ -38,4 +38,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         adapter.setDataList(fragments);
         viewPage.setAdapter(adapter);
     }
+
+
 }
