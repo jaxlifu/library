@@ -2,9 +2,14 @@ package com.yimeng.yimapp.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.util.AttributeSet;
+import android.util.TypedValue;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yimeng.yimapp.R;
@@ -14,7 +19,7 @@ import com.yimeng.yimapp.R;
  * Description :TabNavigator对应的Item
  * Version : V1.0.0
  */
-public class TabNavigatorItem extends RelativeLayout {
+public class TabNavigatorItem extends FrameLayout {
     /**
      * renderIcon: PropTypes.func,
      * renderSelectedIcon: PropTypes.func,
@@ -29,7 +34,7 @@ public class TabNavigatorItem extends RelativeLayout {
      * allowFontScaling: PropTypes.bool,
      */
     private String mTitle;//导航的标题
-    private int mTextSize;//字体大小
+    private float mTextSize;//字体大小
     private int mTextColor;//字体颜色
     private int mSelectedTextColor;//选中的状态的字体颜色
     private int mRenderIcon;//默认的图片资源
@@ -38,9 +43,10 @@ public class TabNavigatorItem extends RelativeLayout {
     private boolean mSelected;//当前是否选中
     private int mImageSize;//图片大小
 
-    private ImageView mImageView;
-    private TextView mTitleView;
+    private ImageView m_ivImage;
+    private TextView m_tvTitle;
     private TextView mBadgeView;
+    private View mRootView;
 
 
     public TabNavigatorItem(Context context) {
@@ -58,12 +64,53 @@ public class TabNavigatorItem extends RelativeLayout {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.TabNavigatorItem);
         try {
             mTitle = a.getString(R.styleable.TabNavigatorItem_title);
+            mTextSize = a.getDimension(R.styleable.TabNavigatorItem_textSize, 12.0f);
+            mTextColor = a.getColor(R.styleable.TabNavigatorItem_textColor, Color.parseColor("#636061"));
+            mSelectedTextColor = a.getColor(R.styleable.TabNavigatorItem_selectedTextColor, Color.parseColor("#f94937"));
+            mImageSize = a.getDimensionPixelSize(R.styleable.TabNavigatorItem_imageSize, (int) dp2px(20.0f));
             mRenderIcon = a.getResourceId(R.styleable.TabNavigatorItem_renderIcon, R.mipmap.ic_launcher);
             mRenderSelectedIcon = a.getResourceId(R.styleable.TabNavigatorItem_renderSelectedIcon, R.mipmap.ic_launcher);
             mBadgeText = a.getString(R.styleable.TabNavigatorItem_badgeText);
+            mSelected = a.getBoolean(R.styleable.TabNavigatorItem_selected, false);
         } finally {
             a.recycle();
         }
+
+        mRootView = LayoutInflater.from(getContext()).inflate(R.layout.layout_tab_navigator, null);
+        m_ivImage = (ImageView) mRootView.findViewById(R.id.iv_navigator_img);
+        m_tvTitle = (TextView) mRootView.findViewById(R.id.tv_navigator_title);
+
+        m_tvTitle.setText(mTitle);
+        ViewGroup.LayoutParams params = m_ivImage.getLayoutParams();
+        params.width = mImageSize;
+        params.height = mImageSize;
+        m_ivImage.setLayoutParams(params);
+        m_tvTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, mTextSize);
+
+        refreshNavigator();
+        addView(mRootView);
     }
 
+
+    private void refreshNavigator() {
+        if (mSelected) {//选中状态
+            m_tvTitle.setTextColor(mSelectedTextColor);
+            m_ivImage.setImageResource(mRenderSelectedIcon);
+        } else {//未选中状态
+            m_tvTitle.setTextColor(mTextColor);
+            m_ivImage.setImageResource(mRenderIcon);
+
+        }
+    }
+
+    public float dp2px(float dp) {
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, getResources().getDisplayMetrics());
+    }
+
+    @Override
+    public void setSelected(boolean selected) {
+        super.setSelected(selected);
+        mSelected = selected;
+        refreshNavigator();
+    }
 }

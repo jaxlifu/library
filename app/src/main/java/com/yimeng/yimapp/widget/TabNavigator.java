@@ -11,26 +11,60 @@ import android.widget.LinearLayout;
  * Version : V1.0.0
  */
 public class TabNavigator extends LinearLayout {
+    private OnTabItemClick mTabItemClick;
+    private int mCurrentIndex;
 
     public TabNavigator(Context context) {
-        super(context);
+        this(context, null);
     }
 
     public TabNavigator(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
     }
 
     public TabNavigator(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
+
+    public void setTabItemClick(OnTabItemClick tabItemClick) {
+        mTabItemClick = tabItemClick;
+    }
+
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        init();
+    }
+
     private void init() {
         setOrientation(HORIZONTAL);
+        if (getChildCount() == 0) return;
+        getChildAt(0).setSelected(true);//默认选中第0个元素
         for (int i = 0; i < getChildCount(); i++) {
             View child = getChildAt(i);
-            if (!(child instanceof TabNavigatorItem))
+            int index = i;
+            //首先确保每个子View都是TabNavigatorItem
+            if (!(child instanceof TabNavigatorItem)) {
                 throw new RuntimeException("child  of TabNavigator must be TabNavigatorItem");
+            }
+
+            TabNavigatorItem item = (TabNavigatorItem) child;
+            item.setOnClickListener(view -> {
+                mCurrentIndex = index;
+                for (int position = 0; position < getChildCount(); position++) {
+                    getChildAt(position).setSelected(false);
+                }
+                item.setSelected(true);
+                if (mTabItemClick != null) {
+                    mTabItemClick.onTabClick(item, mCurrentIndex);
+                }
+            });
         }
+    }
+
+    public interface OnTabItemClick {
+        void onTabClick(View view, int position);
     }
 
 

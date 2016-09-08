@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <data>
@@ -22,9 +22,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
-            <RelativeLayout
+            <!--<RelativeLayout
                 android:id="@+id/rl_tab_home"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -155,16 +156,63 @@
                     android:textColor="@color/selector_tab_color"
                     android:textSize="12sp"/>
 
-            </RelativeLayout>
+            </RelativeLayout>-->
 
         </LinearLayout>
+
+        <com.yimeng.yimapp.widget.TabNavigator
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true">
+
+            <com.yimeng.yimapp.widget.TabNavigatorItem
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:imageSize="20dp"
+                app:renderIcon="@drawable/ic_home_normal"
+                app:renderSelectedIcon="@drawable/ic_home_press"
+                app:title="@string/tab_home"/>
+
+            <com.yimeng.yimapp.widget.TabNavigatorItem
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:renderIcon="@drawable/ic_personal_normal"
+                app:renderSelectedIcon="@drawable/ic_personal_press"
+                app:title="@string/tab_personal"/>
+
+            <com.yimeng.yimapp.widget.TabNavigatorItem
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:visibility="invisible"/>
+
+            <com.yimeng.yimapp.widget.TabNavigatorItem
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:renderIcon="@drawable/ic_discover_normal"
+                app:renderSelectedIcon="@drawable/ic_discover_press"
+                app:title="@string/tab_discover"/>
+
+            <com.yimeng.yimapp.widget.TabNavigatorItem
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:renderIcon="@drawable/ic_mine_normal"
+                app:renderSelectedIcon="@drawable/ic_mine_press"
+                app:title="@string/tab_mine"/>
+
+        </com.yimeng.yimapp.widget.TabNavigator>
         <!--内容的viewPage-->
         <com.yimeng.library.widget.ScrollAvailableViewPager
             android:id="@+id/vp_home_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@id/ll_home_tabs"
-            android:layout_marginBottom="1px"/>
+            android:layout_marginBottom="1px"
+            android:visibility="gone"/>
 
         <View
             android:layout_width="match_parent"

@@ -39,4 +39,4 @@ task makeJar(type: Copy) {
 
 makeJar.dependsOn(build)
 
-apply from: "bintray.gradle"
+//apply from: "bintray.gradle"

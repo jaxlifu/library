@@ -44,23 +44,23 @@ public class MainViewModel extends BaseViewModel {
     }
 
     public void onTabClick(View view) {
-        switch (view.getId()) {
-            case R.id.rl_tab_home:
-                mViewPager.setCurrentItem(0, false);
-                setCurrentIndex(TAB_INDEX_HOME);
-                break;
-            case R.id.rl_tab_fitting:
-            case R.id.rl_tab_personal:
-                ToastUtils.show("这个是3D试衣的界面!");
-                break;
-            case R.id.rl_tab_discover:
-                mViewPager.setCurrentItem(1, false);
-                setCurrentIndex(TAB_INDEX_DISCOVER);
-                break;
-            case R.id.rl_tab_mine:
-                mViewPager.setCurrentItem(2, false);
-                setCurrentIndex(TAB_INDEX_MINE);
-                break;
-        }
+//        switch (view.getId()) {
+//            case R.id.rl_tab_home:
+//                mViewPager.setCurrentItem(0, false);
+//                setCurrentIndex(TAB_INDEX_HOME);
+//                break;
+//            case R.id.rl_tab_fitting:
+//            case R.id.rl_tab_personal:
+//                ToastUtils.show("这个是3D试衣的界面!");
+//                break;
+//            case R.id.rl_tab_discover:
+//                mViewPager.setCurrentItem(1, false);
+//                setCurrentIndex(TAB_INDEX_DISCOVER);
+//                break;
+//            case R.id.rl_tab_mine:
+//                mViewPager.setCurrentItem(2, false);
+//                setCurrentIndex(TAB_INDEX_MINE);
+//                break;
+//        }
     }
 }
