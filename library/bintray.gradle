@@ -1,7 +1,6 @@
 group = PROJ_GROUP
 version = PROJ_VERSION
 project.archivesBaseName = PROJ_ARTIFACTID
-
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'com.github.dcendents.android-maven'
 
@@ -23,7 +22,7 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 }
 
 javadoc {
-    options{
+    options {
         encoding "UTF-8"
         charSet 'UTF-8'
         author true
@@ -74,9 +73,12 @@ install {
     }
 }
 
+Properties properties = new Properties()
+properties.load(project.file('gradle.properties').newDataInputStream())
+
 bintray {
-    user = 'rainlifu'
-    key = 'feb27ba6a80a348829e2b774a22397938ffbc090'
+    user = properties.getProperty("BINTRAY_USER")
+    key = properties.getProperty("BINTRAY_KEY")
 
     configurations = ['archives']
 
@@ -108,7 +110,8 @@ bintray {
 
 apply plugin: "com.jfrog.artifactory"
 artifactory {
-    contextUrl = 'http://oss.jfrog.org/artifactory' //The base Artifactory URL if not overridden by the publisher/resolver
+    contextUrl = 'http://oss.jfrog.org/artifactory'
+    //The base Artifactory URL if not overridden by the publisher/resolver
     resolve {
         repository {
             repoKey = 'libs-release'

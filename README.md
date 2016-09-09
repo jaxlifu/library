@@ -10,13 +10,14 @@
 *  类似微信好友标题的TAG`TagsGroup`
 *  固定高度自适应宽度的ImageView`WrapWidthImageView`
 *  固定宽度自适应高度的ImageView`WrapHeightImageView`
+*  新增了TabNavigator导航
 *  and so on...
 
 ##使用library
 * gradle
 ```
 dependencies{
-    compile 'com.yimeng:library:1.0.0'
+    compile 'com.yimeng:library:1.0.1'
 }
 
 ```
