@@ -23,7 +23,7 @@ dependencies{
 ```
 
 * eclipse
-[eclipse jar libs 传送门](https://github.com/RainliFu/library/tree/master/library/libs) or [直接下载地址](https://github.com/RainliFu/library/blob/master/library/libs/library.jar)
+[eclipse jar libs 传送门](https://github.com/RainliFu/library/blob/master/libs/v1.0.1) or [直接下载地址](https://github.com/RainliFu/library/blob/master/libs/v1.0.1/library.jar)
 
 * 其他引用说明,library中引用了`eventbus`,`logger`,`glide`,`dexter`,请注意不要重复引用
 ```
