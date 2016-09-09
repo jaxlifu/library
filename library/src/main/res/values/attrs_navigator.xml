@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <declare-styleable name="TabNavigator">
+        <attr name="onTabClick" format="reference"/>
+    </declare-styleable>
     <declare-styleable name="TabNavigatorItem">
         <attr name="title" format="string"/>
         <attr name="renderIcon" format="reference"/>

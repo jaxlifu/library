@@ -31,7 +31,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
     @Override
     protected void init(Bundle savedInstanceState) {
         if (getArguments() != null) {
-            mViewModel = new HomeViewModel(getArguments().getString("message"));
+            mViewModel = new HomeViewModel(mAct, getArguments().getString("message"));
             mBinding.setViewModel(mViewModel);
         }
     }

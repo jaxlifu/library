@@ -1,5 +1,6 @@
 package com.yimeng.yimapp.base;
 
+import android.app.Activity;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
@@ -20,11 +21,13 @@ public abstract class BaseFragment<VB extends ViewDataBinding> extends Fragment 
     protected String TAG = getClass().getSimpleName();
     protected View mRootView;
     protected VB mBinding;
+    protected Activity mAct;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, setLayoutResID(), container, false);
+        mAct = getActivity();
         if (mRootView == null) {
             mRootView = mBinding.getRoot();
         } else {

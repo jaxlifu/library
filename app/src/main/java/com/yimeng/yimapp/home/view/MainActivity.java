@@ -34,7 +34,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         List<Fragment> fragments = new ArrayList<>();
         fragments.add(HomeFragment.newInstance("首页信息"));
         fragments.add(HomeFragment.newInstance("发现页面"));
-        fragments.add(HomeFragment.newInstance("我的信息"));
+        fragments.add(MineFragment.newInstance());
         adapter.setDataList(fragments);
         viewPage.setAdapter(adapter);
     }

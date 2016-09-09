@@ -1,6 +1,7 @@
-package com.yimeng.yimapp.widget;
+package com.yimeng.library.tabnavigator;
 
 import android.content.Context;
+import android.databinding.BindingAdapter;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -11,7 +12,7 @@ import android.widget.LinearLayout;
  * Version : V1.0.0
  */
 public class TabNavigator extends LinearLayout {
-    private OnTabItemClick mTabItemClick;
+    private OnTabItemClickListener mTabItemClick;
     private int mCurrentIndex;
 
     public TabNavigator(Context context) {
@@ -26,10 +27,17 @@ public class TabNavigator extends LinearLayout {
         super(context, attrs, defStyleAttr);
     }
 
-
-    public void setTabItemClick(OnTabItemClick tabItemClick) {
+    public void setTabItemClick(OnTabItemClickListener tabItemClick) {
         mTabItemClick = tabItemClick;
     }
+
+    @BindingAdapter("onTabClick")
+    public static void setOnTabClickListener(TabNavigator view, OnTabItemClickListener listener) {
+        if (view != null && listener != null) {
+            view.setTabItemClick(listener);
+        }
+    }
+
 
     @Override
     protected void onFinishInflate() {
@@ -43,27 +51,30 @@ public class TabNavigator extends LinearLayout {
         getChildAt(0).setSelected(true);//默认选中第0个元素
         for (int i = 0; i < getChildCount(); i++) {
             View child = getChildAt(i);
-            int index = i;
+            final int index = i;
             //首先确保每个子View都是TabNavigatorItem
             if (!(child instanceof TabNavigatorItem)) {
                 throw new RuntimeException("child  of TabNavigator must be TabNavigatorItem");
             }
 
-            TabNavigatorItem item = (TabNavigatorItem) child;
-            item.setOnClickListener(view -> {
-                mCurrentIndex = index;
-                for (int position = 0; position < getChildCount(); position++) {
-                    getChildAt(position).setSelected(false);
-                }
-                item.setSelected(true);
-                if (mTabItemClick != null) {
-                    mTabItemClick.onTabClick(item, mCurrentIndex);
+            final TabNavigatorItem item = (TabNavigatorItem) child;
+            item.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mCurrentIndex = index;
+                    for (int position = 0; position < getChildCount(); position++) {
+                        getChildAt(position).setSelected(false);
+                    }
+                    item.setSelected(true);
+                    if (mTabItemClick != null) {
+                        mTabItemClick.onTabClick(item, mCurrentIndex);
+                    }
                 }
             });
         }
     }
 
-    public interface OnTabItemClick {
+    public interface OnTabItemClickListener {
         void onTabClick(View view, int position);
     }
 

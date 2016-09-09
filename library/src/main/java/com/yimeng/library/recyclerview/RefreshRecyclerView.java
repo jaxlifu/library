@@ -60,7 +60,7 @@ public class RefreshRecyclerView extends FrameLayout {
         mRecyclerView.setLayoutManager(layoutManager);
     }
 
-    public void setRefreshAction(final Action action) {
+    public void setRefreshListener(final Action action) {
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -70,8 +70,8 @@ public class RefreshRecyclerView extends FrameLayout {
         });
     }
 
-    public void setLoadMoreAction(final Action action) {
-        Log.i(TAG, "setLoadMoreAction");
+    public void setLoadMoreListener(final Action action) {
+        Log.i(TAG, "setLoadMoreListener");
         if (mAdapter.isShowNoMore || !loadMoreAble) {
             return;
         }

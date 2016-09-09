@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 /**
  * Created by linlongxin on 2015/12/19.
  */
-public class BaseViewHolder<T> extends RecyclerView.ViewHolder{
+public class BaseViewHolder<T> extends RecyclerView.ViewHolder {
 
     private final String TAG = "RecyclerView_BaseViewHolder";
 
@@ -30,16 +30,16 @@ public class BaseViewHolder<T> extends RecyclerView.ViewHolder{
         return (T) itemView.findViewById(resId);
     }
 
-    public void setData(final T object) {
+    public void setData(final T item) {
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onItemViewClick(object);
+                onItemViewClick(item);
             }
         });
     }
 
-    public void onItemViewClick(T object) {
+    public void onItemViewClick(T item) {
 
     }
 

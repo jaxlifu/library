@@ -1,4 +1,4 @@
-package com.yimeng.yimapp.widget;
+package com.yimeng.library.tabnavigator;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -13,7 +13,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.yimeng.yimapp.R;
+import com.yimeng.library.R;
+
 
 /**
  * Created by Jax on 2016/9/8.
@@ -69,8 +70,8 @@ public class TabNavigatorItem extends FrameLayout {
             mTextColor = a.getColor(R.styleable.TabNavigatorItem_textColor, Color.parseColor("#636061"));
             mSelectedTextColor = a.getColor(R.styleable.TabNavigatorItem_selectedTextColor, Color.parseColor("#f94937"));
             mImageSize = a.getDimensionPixelSize(R.styleable.TabNavigatorItem_imageSize, (int) dp2px(20.0f));
-            mRenderIcon = a.getResourceId(R.styleable.TabNavigatorItem_renderIcon, R.mipmap.ic_launcher);
-            mRenderSelectedIcon = a.getResourceId(R.styleable.TabNavigatorItem_renderSelectedIcon, R.mipmap.ic_launcher);
+            mRenderIcon = a.getResourceId(R.styleable.TabNavigatorItem_renderIcon, 0);
+            mRenderSelectedIcon = a.getResourceId(R.styleable.TabNavigatorItem_renderSelectedIcon, 0);
             mBadgeText = a.getString(R.styleable.TabNavigatorItem_badgeText);
             mSelected = a.getBoolean(R.styleable.TabNavigatorItem_selected, false);
         } finally {
