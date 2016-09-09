@@ -169,6 +169,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                app:badgeText="1"
                 app:imageSize="20dp"
                 app:renderIcon="@drawable/ic_home_normal"
                 app:renderSelectedIcon="@drawable/ic_home_press"

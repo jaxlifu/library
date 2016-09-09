@@ -3,6 +3,7 @@ package com.yimeng.yimapp.widget;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -45,7 +46,7 @@ public class TabNavigatorItem extends FrameLayout {
 
     private ImageView m_ivImage;
     private TextView m_tvTitle;
-    private TextView mBadgeView;
+    private TextView m_tvBadge;
     private View mRootView;
 
 
@@ -79,8 +80,10 @@ public class TabNavigatorItem extends FrameLayout {
         mRootView = LayoutInflater.from(getContext()).inflate(R.layout.layout_tab_navigator, null);
         m_ivImage = (ImageView) mRootView.findViewById(R.id.iv_navigator_img);
         m_tvTitle = (TextView) mRootView.findViewById(R.id.tv_navigator_title);
+        m_tvBadge = (TextView) mRootView.findViewById(R.id.tv_navigator_badge);
 
         m_tvTitle.setText(mTitle);
+        m_tvBadge.setText(mBadgeText);
         ViewGroup.LayoutParams params = m_ivImage.getLayoutParams();
         params.width = mImageSize;
         params.height = mImageSize;
@@ -93,6 +96,7 @@ public class TabNavigatorItem extends FrameLayout {
 
 
     private void refreshNavigator() {
+        m_tvBadge.setVisibility(TextUtils.isEmpty(mBadgeText) ? GONE : VISIBLE);
         if (mSelected) {//选中状态
             m_tvTitle.setTextColor(mSelectedTextColor);
             m_ivImage.setImageResource(mRenderSelectedIcon);
@@ -112,5 +116,18 @@ public class TabNavigatorItem extends FrameLayout {
         super.setSelected(selected);
         mSelected = selected;
         refreshNavigator();
+    }
+
+    public void setBadgeText(String badgeText) {
+        mBadgeText = badgeText;
+        m_tvBadge.setText(mBadgeText);
+        refreshNavigator();
+    }
+
+    public void setBadgeText(int count) {
+        String value;
+        if (count > 99) value = "99+";
+        else value = String.valueOf(count);
+        this.setBadgeText(value);
     }
 }
